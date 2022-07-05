@@ -15,13 +15,11 @@ const GET_TRACK = gql`
         photo
       }
       thumbnail
-      durationInSeconds
       modulesCount
       numberOfViews
       modules {
         id
         title
-        durationInSeconds
       }
       description
     }
