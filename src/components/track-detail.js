@@ -5,8 +5,10 @@ import {
   Button,
   IconRun,
   IconView,
+  IconTime,
   IconBook,
 } from '../styles';
+import { humanReadableTimeFromSeconds } from '../utils/helpers';
 import { Link } from '@reach/router';
 import ContentSection from './content-section';
 import MarkDown from './md-content';
@@ -22,6 +24,7 @@ const TrackDetail = ({ track }) => {
     description,
     thumbnail,
     author,
+    durationInSeconds,
     modulesCount,
     modules,
     numberOfViews,
@@ -44,6 +47,10 @@ const TrackDetail = ({ track }) => {
             <IconAndLabel>
               <IconBook width="14px" height="14px" />
               <div>{modulesCount} modules</div>
+            </IconAndLabel>
+            <IconAndLabel>
+              <IconTime width="14px" />
+              <div>{humanReadableTimeFromSeconds(durationInSeconds)}</div>
             </IconAndLabel>
           </DetailItem>
           <DetailItem>
@@ -70,6 +77,9 @@ const TrackDetail = ({ track }) => {
               {modules.map((module) => (
                 <li key={module.title}>
                   <div>{module.title}</div>
+                  <ModuleLength>
+                    {humanReadableTimeFromSeconds(module.durationInSeconds)}
+                  </ModuleLength>
                 </li>
               ))}
             </ul>
